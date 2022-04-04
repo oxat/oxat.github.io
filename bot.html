@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+	<meta charset="UTF-8">
+	<title>Profile Bot</title>
+	<link rel="stylesheet" href="./style.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js"></script>
+	<script>
+		$.getJSON("https://oxat.eu/web_gear/chat/profile2.php?n=oxatbot", function(json){
+			updates = json.Err.Media.custom;
+			const chars = updates.split('~');
+			$("#updates").html(chars[0]); // Initiate
+			$("#nick").html(chars[0]); // Initiate
+			document.querySelector(".headericon").src = json.Err.Media.avatar2;
+		});
+	</script>
+</head>
+<body>
+	<aside class="profile-card" id="test">
+		<header>
+			<a href="#">
+				<img class="headericon" src="">
+			</a>
+			<h1><span id="nick">Loading...</span></h1>
+			<h2>System Bot</h2>
+		</header>
+		<div class="profile-bio">
+			<p> For more details and information about my system,
+			<br> you can go to bot.oxat.eu <br> , you can create a simple and fast robot. </p>
+		</div>
+		<ul class="profile-social-links">
+			<li>
+				<a href="https://oxat.eu">
+					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/social-twitter.svg">
+				</a>
+			</li>
+			<li>
+				<a href="https://oxat.eu">
+					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/social-envato.svg">
+				</a>
+			</li>
+			<li>
+				<a href="https://oxat.eu">
+					<img src="http://fractalink.com/works/contest/irfan/codepen_icon.png">
+				</a>
+			</li>
+		</ul>
+	</aside>
+</body>
+</html>
