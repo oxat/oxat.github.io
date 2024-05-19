@@ -1,0 +1,488 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>Scorpya · Space</title>
+		<link rel="shortcut icon" href="{Favicon}">
+
+		<!------ JQUERY ------>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+
+		<!------ FONTS ------>
+		<link href="https://fonts.googleapis.com/css?family=Exo|Rationale|Barlow+Condensed:400i,500i" rel="stylesheet">
+
+		<!------ ICON FONTS ------>
+		<script src="//glenthemes.github.io/system-uicons/init-icons.js"></script>
+		<link href="style.css" rel="stylesheet">
+
+		<!------ THEME SCRIPTS ------>
+		<script src="//static.tumblr.com/iuw14ew/VSQma1786/jquery.style-my-tooltips.js"></script>
+
+		<script src="//glenthemes.s3.eu-west-2.amazonaws.com/abt-pages/07/rogue.js"></script>
+ 
+		<style type="text/css">
+			/*------ HOVER TOOLTIPS ------*/
+			#s-m-t-tooltip {
+				padding:5px 10px;
+				margin:20px;
+				background-color:var(--Tooltips-BG);
+				border:1px solid var(--Tooltips-Border);
+				font-family:exo;
+				font-size:calc(var(--Misc-Font-Size) - 2.5px);
+				letter-spacing:1.3px;
+				text-transform:uppercase;
+				color:var(--Tooltips-Text);
+				z-index:99;
+				max-width:40vw;
+			}
+			 
+			/*------ TUMBLR CONTROLS ------*/
+			iframe#tumblr_controls, .iframe-controls--desktop {
+				top:5px!important;
+				right:5px!important;
+				position:fixed!important;
+			 
+				transform:scale(0.7,0.7);
+			 
+				transform-origin:100% 0;
+				z-index:999999!important;
+			}
+			 
+			/*------ TEXT HIGHLIGHT ------*/
+			::selection {
+				color:var(--Text-Highlight);
+				background:var(--Text-Highlight-Background);
+			}
+			 
+			::-moz-selection {
+				color:var(--Text-Highlight);
+				background:var(--Text-Highlight-Background);
+			}
+			 
+			/*------ BASICS ------*/
+			body {
+				font-family:exo;
+				font-size:var(--Misc-Font-Size);
+				color:var(--Misc-Text-Color);
+				line-height:var(--General-Line-Height);
+				text-align:left;
+				overflow:hidden;
+				overscroll-behavior-y:none;
+			}
+			 
+			a {
+				color:var(--Links-Color);
+			}
+			 
+			b, strong {
+				color:var(--TextBox-Bold);
+			}
+			 
+			i:not([class]), em:not([class]) {
+				color:var(--TextBox-Italic);
+			}
+			 
+			/*------ BACKGROUND COLOR & BACKGROUND IMAGE ------*/
+			body {
+				background-color: #222222;
+			 
+				background-attachment:fixed;
+				background-repeat:no-repeat;
+				background-size:cover;
+			 
+				background-color:#222222;
+			}
+			 
+			/*------ COLOR, SIZING, SPACING OPTIONS ------*/
+			:root {
+				--Page-FadeIn-Speed:0.420s;
+			 
+				/*---- CONTAINER ----*/
+				--Container-Background:#222222;
+				--Container-Padding:25px;
+				--Container-Width:calc(var(--Sidebar-Image-Width) + (var(--Sidebar-Image-Frame-Size) * 2) + var(--Center-Gap) + var(--Column-1-Width) + var(--Column-Spacing) + var(--Column-2-Width));
+			 
+				/*---- TOP SECTION ----*/
+				--Top-Title-Size:17px;
+				--Top-Title-Color:#777777;
+				--Top-Divider-Color:#444444;
+			 
+				--NavLinks-Icon-Size:14px;
+				--NavLinks-Icon-Color:#CECEBF;
+				--NavLinks-Icon-Padding:6px;
+				--NavLinks-Icon-Background:#666666;
+				--NavLinks-Icon-Rounding:3px;
+				--NavLinks-Spacing:6px;
+				--NavLinks-Hover-Speed:0.169s;
+			 
+				--NavLinks-HOVER-Background:#999999;
+				--NavLinks-HOVER-Icon:#111;
+			 
+				--Tooltips-BG:#231131;
+				--Tooltips-Border:#3c3545;
+				--Tooltips-Text:#becfd2;
+			 
+				/*---- LEFT SIDEBAR ----*/
+				--Sidebar-Image-Frame-Size:8px;
+				--Sidebar-Image-Frame-Color:#999999;
+				--Sidebar-Image-Width:270px;
+				--Sidebar-Image-Background:#341c36;
+			 
+				/*---- MUSIC PLAYER ----*/
+				--MusicPlayer-Padding:16px;
+				--MusicPlayer-Background:#444444;
+				--MusicPlayer-Background-Transparency:30%;
+				--MusicPlayer-Buttons-Size:13px;
+				--MusicPlayer-Buttons-Color:#becfd2;
+				--MusicPlayer-Text-Size:12px;
+				--MusicPlayer-Text-Color:#becfd2;
+			 
+				/* gap between left sidebar and rightside main content */
+				--Center-Gap:20px;
+			 
+				/*---- SMALL TITLE ----*/
+				--Small-Title-Size:12px;
+				--Small-Title-Color:#BBBBBB;
+			 
+				/*---- BIG TITLE ----*/
+				--Big-Title-Size:28px;
+				--Big-Title-Color:#BBBBBB;
+				--Flashing-Cursor-Width:13px;
+				--Flashing-Cursor-Color:#BBBBBB;
+			 
+				/*---- QUOTE ----*/
+				--Quote-Border-Depth:8px;
+				--Quote-Border-Size:1px;
+				--Quote-Border-Color:#777777;
+				--Quote-Padding:10px;
+				--Quote-Font-Size:12px;
+				--Quote-Color:#d2e5e8;
+				--Quote-Triangle-Size:15px;
+			 
+				/*---- ICON IMAGE ----*/
+				--Icon-Image-Spacing:9px;
+				--Icon-Image-Size:50px;
+				--Icon-Image-Border-Size:6px;
+				--Icon-Image-Border-Color:#777777;
+			 
+				/*---- COLUMN 1 ----*/
+				--Column-1-Width:200px;
+			 
+				--Labels-Box-Padding:15px;
+				--Labels-Box-Border-Size:1px;
+				--Labels-Box-Border-Color:#CCCCCC;
+				--Labels-Box-Background:#111111;
+				--Label-Name-Size:13px;
+				--Label-Name-Color:#FFFFFF;
+				--Label-Detail-Size:11px;
+				--Label-Detail-Color:#CCCCCC;
+				--Label-Row-Spacing:6px;
+			 
+				--Custom-Links-Per-Row:2;
+				--Custom-Links-Spacing:8px;
+				--Custom-Links-Padding:7px;
+				--Custom-Links-Background:#333333;
+				--Custom-Links-Font-Size:10px;
+				--Custom-Links-Color:#DDDDDD;
+			 
+				--Custom-Links-HOVER-Background:#555555;
+				--Custom-Links-HOVER-Color:#111;
+				--Custom-Links-Hover-Speed:0.169s;
+			 
+				/*---- COLUMN SPACING ----*/
+				--Column-Spacing:18px;
+			 
+				/*---- COLUMN 2 ----*/
+				--Column-2-Width:200px;
+			 
+				--TextBox-Title-Padding:8px;
+				--TextBox-Title-Background:#333333;
+				--TextBox-Title-Size:12px;
+				--TextBox-Title-Color:#AAAAAA;
+			 
+				--TextBox-Padding:14px;
+				--TextBox-Border-Size:1px;
+				--TextBox-Border-Color:#666666;
+				--TextBox-Background:#222222;
+			 
+				--TextBox-Font-Size:11px;
+				--TextBox-Text-Color:#BBBBBB;
+				--TextBox-Links:#EEEEEE;
+				--TextBox-Links-Underline:#666666;
+				--TextBox-Bold:#EEEEEE;
+				--TextBox-Italic:#999999;
+				--General-Line-Height:1.8em;
+			 
+				--Scrollbar-Padding:9px;
+				--Scrollbar-Thumb:#666666;
+				--Scrollbar-Track:#444444;
+			 
+				/*---- OTHER ----*/
+				--Text-Highlight:#CCCCCC;
+				--Text-Highlight-Background:#222222;
+			}
+			 
+			/*------ TOP SECTION ------*/
+			section[top]{
+				margin-bottom:20px;
+			}
+			 
+			[top-title]{
+				margin-left:1.5px;
+				font-family:rationale;
+				font-size:var(--Top-Title-Size);
+				text-transform:uppercase;
+				letter-spacing:3px;
+				color:var(--Top-Title-Color);
+				line-height:var(--Top-Title-Size);
+			}
+			 
+			[top] [divider]{
+				margin:0 8px;
+				flex:1;
+				height:1px;
+				background:linear-gradient(to right, transparent, var(--Top-Divider-Color), transparent);
+			}
+			 
+			[top-links] .system-uicons {
+				stroke-width:1.2;
+			}
+			 
+			/*------ LEFT SIDEBAR ------*/
+			[left-sidebar]{
+				position:relative;
+				border:var(--Sidebar-Image-Frame-Size) solid var(--Sidebar-Image-Frame-Color);
+				background:var(--Sidebar-Image-Background);
+			}
+			 
+			[sidebar-image]{
+				width:300px;
+				height:360px;
+			}
+			 
+			[music-name]{
+				margin-left:10px;
+				font-family:barlow condensed;
+				font-size:var(--MusicPlayer-Text-Size);
+				text-transform:uppercase;
+				letter-spacing:2px;
+				color:var(--MusicPlayer-Text-Color);
+				line-height:var(--MusicPlayer-Text-Size);
+			}
+			 
+			/*------ RIGHTSIDE MAIN CONTENT ------*/
+			.mainright {
+				margin-left:var(--Center-Gap);
+			}
+			 
+			[small-title]{
+				font-family:barlow condensed;
+				font-size:var(--Small-Title-Size);
+				text-transform:uppercase;
+				letter-spacing:2px;
+				color:var(--Small-Title-Color);
+			}
+			 
+			[small-title] + .tb-head [big-title]{
+				margin-top:4px;
+			}
+			 
+			[big-title]{
+				display:flex;
+				font-family:barlow condensed;
+				font-size:var(--Big-Title-Size);
+				font-weight:600;
+				text-transform:uppercase;
+				letter-spacing:2.5px;
+				color:var(--Big-Title-Color);
+				line-height:var(--Big-Title-Size);
+			}
+			 
+			[big-title][flashing-cursor="yes"] .flooshed {
+				align-self:flex-end;
+				margin-bottom:3px;
+				margin-left:2px;
+				width:var(--Flashing-Cursor-Width);
+				height:2px;
+				background:var(--Flashing-Cursor-Color);
+				transform:skewX(-10deg);
+				animation: flashing 1s step-start 0s infinite;
+				-webkit-animation: flashing 1s step-start 0s infinite;
+				-moz-animation: flashing 1s step-start 0s infinite;
+			}
+			 
+			@keyframes flashing { 50% {opacity:0;} }
+			@-webkit-keyframes flashing { 50% {opacity:0;} }
+			@-moz-keyframes flashing { 50% {opacity:0;} }
+			 
+			.quotecont {
+				margin-top:20px;
+			}
+			 
+			[quote]{
+				padding:var(--Quote-Padding);
+				font-family:rationale;
+				font-size:var(--Quote-Font-Size);
+				text-transform:uppercase;
+				letter-spacing:1.5px;
+				color:var(--Quote-Color);
+				text-align:center;
+			}
+			 
+			[icon-image]{
+				width:var(--Icon-Image-Size);
+				height:var(--Icon-Image-Size);
+				border:var(--Icon-Image-Border-Size) solid var(--Icon-Image-Border-Color);
+			}
+			 
+			/*------ COLUMNS GENERAL ------*/
+			column {
+				padding-top:20px;
+				height:calc(100% - 20px);
+			}
+			 
+			/*------ COLUMN 1 ------*/
+			column[left]{
+				width:var(--Column-1-Width);
+			}
+			 
+			[labels-box]{
+				padding:var(--Labels-Box-Padding);
+				background:var(--Labels-Box-Background);
+				border:var(--Labels-Box-Border-Size) solid var(--Labels-Box-Border-Color);
+			}
+			 
+			li[row]{
+				list-style-type:none;
+				line-height:var(--Label-Name-Size);
+			}
+			 
+			li[row] + li[row]{
+				margin-top:var(--Label-Row-Spacing);
+			}
+			 
+			[row-label]{
+				font-family:rationale;
+				font-size:var(--Label-Name-Size);
+				text-transform:uppercase;
+				letter-spacing:1.5px;
+				color:var(--Label-Name-Color);
+			}
+			 
+			[row-detail]{
+				margin-left:1.5px;
+				font-family:exo;
+				font-size:var(--Label-Detail-Size);
+				color:var(--Label-Detail-Color);
+			}
+			 
+			[custom-links]{
+				margin-top:16px;
+			}
+			 
+			[custom-links] a span {
+				display:block;
+				padding:var(--Custom-Links-Padding) calc(var(--Custom-Links-Padding) + 3px);
+				font-family:rationale;
+				font-size:var(--Custom-Links-Font-Size);
+				text-transform:uppercase;
+				letter-spacing:1.3px;
+				color:var(--Custom-Links-Color);
+				line-height:var(--Custom-Links-Font-Size);
+				transition:color var(--Custom-Links-Hover-Speed) ease-in-out;
+			}
+			 
+			/*------ COLUMN 2 ------*/
+			column[right]{
+				width:var(--Column-2-Width);
+				height:100%;
+			}
+			 
+			.tb-title {
+				padding-bottom:15px;
+			}
+			 
+			[textbox-title]{
+				padding:calc(var(--TextBox-Title-Padding) - 2px) var(--TextBox-Title-Padding);
+				background:var(--TextBox-Title-Background);
+				font-family:barlow condensed;
+				font-size:var(--TextBox-Title-Size);
+				text-transform:uppercase;
+				letter-spacing:3px;
+				color:var(--TextBox-Title-Color);
+				text-align:center;
+			}
+			 
+			[textbox-text]{
+				border:var(--TextBox-Border-Size) solid var(--TextBox-Border-Color);
+				padding:calc(var(--TextBox-Padding) - 2px) var(--TextBox-Padding);
+				background:var(--TextBox-Background);
+				font-family:exo;
+				font-size:var(--TextBox-Font-Size);
+				color:var(--TextBox-Text-Color);
+				box-sizing:border-box;
+			}
+			 
+			[textbox-text] a {
+				padding-bottom:1px;
+				border-bottom:1px solid var(--TextBox-Links-Underline);
+				font-size:calc(var(--TextBox-Font-Size) - 1.5px);
+				text-transform:uppercase;
+				letter-spacing:1px;
+				color:var(--TextBox-Links);
+				height:228px;
+			}
+			 
+			.scone::-webkit-scrollbar {
+				width:var(--Scrollbar-Padding);
+				height:0px;
+				background-color:var(--TextBox-Background);
+			}
+			 
+			.scone::-webkit-scrollbar-thumb {
+				border:calc((var(--Scrollbar-Padding) - 1px) / 2) solid var(--TextBox-Background);
+				background-color:var(--Scrollbar-Thumb);
+			}
+			 
+			.scone::-webkit-scrollbar-track {
+				border:calc((var(--Scrollbar-Padding) - 1px) / 2) solid var(--TextBox-Background);
+				background-color:var(--Scrollbar-Track);
+			}
+		</style>
+	</head>
+	<body>
+		<container>
+			<section top>
+				<div top-title>
+					Geo (11) 🌸
+				</div>
+				<div divider></div>
+				<div top-links>
+					<a href="index.html" title="home">
+						<i class="system-uicons" icon-name="Home (With Door)"></i>
+					</a>
+				</div>
+			</section>
+			<section left-sidebar>
+				<img sidebar-image src="https://xatimg.com/image/NStlvMREQl9S.jpg">
+				<div music-name>Miley Cyrus · Flowers</div>
+				<audio music src="https://pouch.jumpshare.com/preview/8U4hu2AcUQOhiw_gtfufZJShMKxXRqBWXQtNiQuTzHCARofk5XB6kNmxw3CjHy1Y-U98yiEq0RPLLFpSbqEq-ahetsc1RjcjTy2G5zUF36YKYearCTC3HI_IxvrRLh3rUnXDYhYuHOFkwz3yW3XlOKN_fIMI2zJarj0avEcXWfs.mp3"></audio>
+			</section>
+			<section main-right>
+				<div big-title flashing-cursor="yes">
+					♥ Scorpya
+				</div>
+				<div quote>Nu te deranja să mă deranjezi !</div>
+				<img icon-image src="https://xatimg.com/image/ALWgwv6T5Bke.jpg">
+				<column left alignment="bottom">
+					<div labels-box include-colon="no">
+						* Rol: 
+						* Zodiac: Pești
+						* Nicknames: Scorpya
+						* Height: 1.55m
+					</div>
+					<h4 class="gradient-multiline"><span> </span></h4>
+				</column>
+			</section>
+		</container>
+	</body>
+</html>
