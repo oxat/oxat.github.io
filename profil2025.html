@@ -771,7 +771,19 @@ class Application
     // Initialize on load
     window.addEventListener('load', () => {
       // Set online status
-      setStatus('online');
+      fetch('https://oceanbot.net/online.php?id=1481979077')
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.status) {
+            setStatus(data.status); // ex: "online", "offline", "available"
+          } else {
+            setStatus('offline'); // fallback
+          }
+        })
+        .catch(error => {
+          console.error("Eroare la verificarea statusului:", error);
+          setStatus('offline');
+        });
       
       // Create PHP code background
       createPhpBackground();
