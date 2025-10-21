@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>xEmma - Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ff69b4 0%, #c142f4 50%, #7b2cbf 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+      color: #fff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 1000px;
+      z-index: 1;
+      padding: 20px;
+    }
+
+    .avatar-container {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 255, 255, 0.8);
+      object-fit: cover;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(196, 66, 244, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .status-indicator {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      width: 20px;
+      height: 20px;
+      background-color: #00ff00;
+      border-radius: 50%;
+      border: 3px solid white;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(0, 255, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+    }
+
+    .name-container {
+      position: relative;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .name {
+      font-size: 48px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #fff, #ffb3e6, #fff);
+      background-size: 200% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: shimmer 3s linear infinite;
+      letter-spacing: 2px;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .beating-heart {
+      position: absolute;
+      top: -15px;
+      right: -30px;
+      font-size: 24px;
+      color: #ff0000;
+      animation: heartbeat 1s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.3); }
+      50% { transform: scale(1); }
+    }
+
+    .typing-effect {
+      display: flex;
+      justify-content: center;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+      min-height: 24px;
+      font-style: italic;
+    }
+
+    .typing-effect::after {
+      content: "|";
+      animation: blink 1s infinite;
+      margin-left: 2px;
+      color: #ffff00;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 30px;
+      width: 90%;
+    }
+
+    .skill-icon {
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      font-size: 32px;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .skill-icon:hover {
+      transform: scale(1.15) rotate(-10deg);
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
+      border-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.6), inset 0 0 25px rgba(255, 255, 255, 0.2);
+    }
+
+    .skill-level {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.8));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      font-size: 18px;
+      font-weight: bold;
+      color: #00ff88;
+      pointer-events: none;
+      text-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+    }
+
+    .skill-level.show {
+      opacity: 1;
+    }
+
+    .social-container {
+      position: fixed;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      z-index: 10;
+    }
+
+    .heart-shape {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .heart-shape svg {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+      transition: all 0.3s ease;
+    }
+
+    .heart-shape:hover svg {
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 30px currentColor);
+      transform: scale(1.15);
+    }
+
+    .heart-shape i {
+      position: absolute;
+      font-size: 24px;
+      z-index: 2;
+    }
+
+    .heart-shape.instagram svg { stroke: #E1306C; fill: #E1306C; }
+    .heart-shape.facebook svg { stroke: #1877F2; fill: #1877F2; }
+    .heart-shape.github svg { stroke: #7b2cbf; fill: none; }
+    .heart-shape.github i { color: #7b2cbf; }
+    .heart-shape.linkedin svg { stroke: #0A66C2; fill: #0A66C2; }
+    .heart-shape.twitter svg { stroke: #1DA1F2; fill: #1DA1F2; }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 15;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, rgba(196, 66, 244, 0.9), rgba(123, 44, 191, 0.9));
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      max-width: 400px;
+      animation: slideUp 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-content h2 {
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    .modal-content p {
+      margin-bottom: 20px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .modal-content input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .modal-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
+
+    .modal-btn-close {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .modal-btn-save {
+      background-color: #00ff00;
+      color: black;
+    }
+
+    .modal-btn:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .social-container {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        flex-direction: row;
+        margin-top: 30px;
+        gap: 15px;
+      }
+      
+      .name {
+        font-size: 36px;
+      }
+      
+      .avatar {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="content-wrapper">
+    <div class="avatar-container">
+      <img id="avatar-img" src="https://xatimg.com/image/rFgCxgKESkR7.png" alt="Avatar" class="avatar">
+      <div class="status-indicator" id="status-indicator"></div>
+    </div>
+    
+    <div class="name-container">
+      <h1 class="name" id="user-name">xEmma</h1>
+      <span class="beating-heart">♥</span>
+    </div>
+    
+    <div class="typing-effect" id="typing-effect"></div>
+    
+    <div class="skills-container">
+      <div class="skill-icon" onclick="toggleSkillLevel(this)" title="HTML5">
+        <i class="fab fa-html5"></i>
+        <div class="skill-level">92%</div>
+      </div>
+      <div class="skill-icon" onclick="toggleSkillLevel(this)" title="CSS3">
+        <i class="fab fa-css3-alt"></i>
+        <div class="skill-level">88%</div>
+      </div>
+      <div class="skill-icon" onclick="toggleSkillLevel(this)" title="JavaScript">
+        <i class="fab fa-js"></i>
+        <div class="skill-level">95%</div>
+      </div>
+      <div class="skill-icon" onclick="toggleSkillLevel(this)" title="PHP">
+        <i class="fab fa-php"></i>
+        <div class="skill-level">80%</div>
+      </div>
+      <div class="skill-icon" onclick="toggleSkillLevel(this)" title="Python">
+        <i class="fab fa-python"></i>
+        <div class="skill-level">75%</div>
+      </div>
+      <div class="skill-icon" onclick="toggleSkillLevel(this)" title="React">
+        <i class="fab fa-react"></i>
+        <div class="skill-level">85%</div>
+      </div>
+      <div class="skill-icon" onclick="toggleSkillLevel(this)" title="Node.js">
+        <i class="fab fa-node-js"></i>
+        <div class="skill-level">78%</div>
+      </div>
+      <div class="skill-icon" onclick="toggleSkillLevel(this)" title="Git">
+        <i class="fab fa-git-alt"></i>
+        <div class="skill-level">82%</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="social-container">
+    <div class="heart-shape instagram" data-platform="Instagram" onclick="openModal('Instagram')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+      <i class="fab fa-instagram"></i>
+    </div>
+    <div class="heart-shape facebook" data-platform="Facebook" onclick="openModal('Facebook')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+      <i class="fab fa-facebook-f"></i>
+    </div>
+    <div class="heart-shape github" data-platform="GitHub" onclick="openModal('GitHub')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+      <i class="fab fa-github"></i>
+    </div>
+    <div class="heart-shape linkedin" data-platform="LinkedIn" onclick="openModal('LinkedIn')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+      <i class="fab fa-linkedin-in"></i>
+    </div>
+    <div class="heart-shape twitter" data-platform="Twitter" onclick="openModal('Twitter')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+      <i class="fab fa-twitter"></i>
+    </div>
+  </div>
+
+  <div id="socialModal" class="modal">
+    <div class="modal-content">
+      <h2 id="modalTitle">Connect</h2>
+      <p id="modalText">Add your profile link</p>
+      <input type="text" id="socialInput" placeholder="Paste your profile URL...">
+      <div class="modal-buttons">
+        <button class="modal-btn modal-btn-close" onclick="closeModal()">Anulare</button>
+        <button class="modal-btn modal-btn-save" onclick="saveLink()">Salvare</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentPlatform = '';
+    let socialLinks = {
+      'Instagram': 'https://instagram.com',
+      'Facebook': 'https://facebook.com',
+      'GitHub': 'https://github.com',
+      'LinkedIn': 'https://linkedin.com',
+      'Twitter': 'https://twitter.com'
+    };
+
+    const typingElement = document.getElementById('typing-effect');
+    const phrases = [
+      "I love programming with all my heart ❤️",
+      "Code is poetry written in logic",
+      "Every bug is a lesson in disguise",
+      "Building amazing things one line at a time",
+      "Programming is my passion and my purpose"
+    ];
+    
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingDelay = 100;
+    
+    function type() {
+      const currentPhrase = phrases[phraseIndex];
+      
+      if (isDeleting) {
+        typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+        typingDelay = 50;
+      } else {
+        typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+        typingDelay = 100;
+      }
+      
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        isDeleting = true;
+        typingDelay = 2000;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        typingDelay = 500;
+      }
+      
+      setTimeout(type, typingDelay);
+    }
+
+    function openModal(platform) {
+      const url = socialLinks[platform];
+      if (url) {
+        window.open(url, '_blank');
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('socialModal').classList.remove('show');
+    }
+
+    function saveLink() {
+      const link = document.getElementById('socialInput').value;
+      if (link.trim()) {
+        socialLinks[currentPlatform] = link;
+        console.log(`${currentPlatform}: ${link}`);
+        closeModal();
+      }
+    }
+
+    function toggleSkillLevel(element) {
+      const skillLevel = element.querySelector('.skill-level');
+      
+      // Scoate toate alte skill-uri
+      document.querySelectorAll('.skill-level').forEach(el => {
+        if (el !== skillLevel) {
+          el.classList.remove('show');
+        }
+      });
+      
+      // Toggle acest skill
+      skillLevel.classList.toggle('show');
+      
+      // Auto-hide după 3 secunde
+      if (skillLevel.classList.contains('show')) {
+        setTimeout(() => {
+          skillLevel.classList.remove('show');
+        }, 3000);
+      }
+    }
+
+    // Fetch data from xat.com API
+    async function fetchUserData() {
+      try {
+        const response = await fetch('https://xat.com/web_gear/chat/profile2.php?n=xEmma');
+        const data = await response.json();
+        
+        if (data.Err && data.Err.Media) {
+          const media = data.Err.Media;
+          
+          // Update name
+          if (media.nick) {
+            const name = media.nick.split('-')[1] || media.Name;
+            document.getElementById('user-name').textContent = name.trim() || 'xEmma';
+          }
+          
+          // Update avatar
+          if (media.avatar) {
+            document.getElementById('avatar-img').src = media.avatar;
+          }
+          
+          console.log('User data loaded:', media);
+        }
+      } catch (error) {
+        console.log('Using default profile data');
+      }
+    }
+
+    // Initialize
+    window.addEventListener('load', () => {
+      fetchUserData();
+      
+      // Set online status
+      fetch('https://oceanbot.net/online.php?id=1523597640')
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.status) {
+            setStatus(data.status); // ex: "online", "offline", "available"
+          } else {
+            setStatus('offline'); // fallback
+          }
+        })
+        .catch(error => {
+          console.error("Eroare la verificarea statusului:", error);
+          setStatus('offline');
+        });
+      
+      setTimeout(type, 1000);
+    });
+
+    // Set active status function (could be called from outside)
+    function setStatus(status) {
+      const indicator = document.getElementById('status-indicator');
+      indicator.className = 'status-indicator';
+      
+      switch(status) {
+        case 'online':
+          indicator.style.backgroundColor = '#00cc00';
+          indicator.style.animation = 'pulse 1.5s infinite';
+          break;
+        case 'available':
+          indicator.style.backgroundColor = '#ffa500';
+          indicator.style.animation = 'pulse 1.5s infinite';
+          break;
+        case 'offline':
+          indicator.style.backgroundColor = '#cc0000';
+          indicator.style.animation = 'none';
+          break;
+      }
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('socialModal').addEventListener('click', function(event) {
+      if (event.target === this) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
