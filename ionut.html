@@ -151,14 +151,14 @@
       50% { opacity: 0.8; transform: translateX(-50%) scale(1.1); }
     }
 
-    /* Main Content */
+    /* Content Wrapper - Add padding for floating elements */
     .content-wrapper {
       position: relative;
       z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 60px 20px;
+      padding: 60px 250px 60px 250px;
       min-height: 100vh;
     }
 
@@ -671,6 +671,169 @@
       opacity: 1;
     }
 
+    /* Music Player - Bottom Right - Extra Compact */
+    .music-player {
+      position: fixed;
+      right: 30px;
+      bottom: 20px;
+      width: 150px;
+      background: linear-gradient(135deg, rgba(40, 30, 20, 0.95), rgba(20, 15, 10, 0.95));
+      border: 2px solid #8b7355;
+      border-radius: 10px;
+      padding: 8px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+      z-index: 100;
+    }
+
+    .player-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .play-button {
+      width: 30px;
+      height: 30px;
+      background: linear-gradient(135deg, #ff8800, #ff6600);
+      border: none;
+      border-radius: 50%;
+      color: #fff;
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(255, 100, 0, 0.4);
+      flex-shrink: 0;
+    }
+
+    .play-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(255, 100, 0, 0.6);
+    }
+
+    .play-button:active {
+      transform: scale(0.95);
+    }
+
+    .track-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .track-name {
+      font-size: 9px;
+      color: #e8dcc4;
+      font-weight: 600;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .track-artist {
+      font-size: 8px;
+      color: #c4a574;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .audio-waves {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      height: 16px;
+      margin-bottom: 6px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      padding: 3px;
+    }
+
+    .wave-bar {
+      width: 2px;
+      background: linear-gradient(to top, #ff6600, #ff8800);
+      border-radius: 2px;
+      animation: wave 0.8s ease-in-out infinite alternate;
+      opacity: 0;
+    }
+
+    .wave-bar:nth-child(1) { animation-delay: 0s; }
+    .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+    .wave-bar:nth-child(6) { animation-delay: 0.5s; }
+    .wave-bar:nth-child(7) { animation-delay: 0.6s; }
+
+    .music-player.playing .wave-bar {
+      opacity: 1;
+    }
+
+    @keyframes wave {
+      0% { height: 3px; }
+      100% { height: 12px; }
+    }
+
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .volume-icon {
+      color: #c4a574;
+      font-size: 9px;
+      flex-shrink: 0;
+    }
+
+    .volume-slider {
+      flex: 1;
+      height: 3px;
+      background: rgba(139, 115, 85, 0.3);
+      border-radius: 2px;
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      max-width: 70px;
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 9px;
+      height: 9px;
+      background: linear-gradient(135deg, #ff8800, #ff6600);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 0 5px rgba(255, 136, 0, 0.5);
+      transition: all 0.2s ease;
+    }
+
+    .volume-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 8px rgba(255, 136, 0, 0.8);
+    }
+
+    .volume-slider::-moz-range-thumb {
+      width: 9px;
+      height: 9px;
+      background: linear-gradient(135deg, #ff8800, #ff6600);
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 5px rgba(255, 136, 0, 0.5);
+    }
+
+    .volume-percentage {
+      font-size: 8px;
+      color: #c4a574;
+      min-width: 20px;
+      text-align: right;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .main-title {
@@ -741,6 +904,13 @@
         left: 50%;
         transform: translateX(-50%);
       }
+
+      .music-player {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        bottom: 15px;
+      }
     }
   </style>
 </head>
@@ -772,7 +942,7 @@
     </div>
 
     <div class="title-container">
-      <h1 class="main-title">IONUT</h1>
+      <h1 class="main-title">Ionut</h1>
       <div class="ornament"></div>
       <p class="subtitle">Lord of Code • Master of Digital Realms</p>
       
@@ -853,6 +1023,28 @@
         <div class="level-text">MASTERY</div>
       </div>
     </div>
+  </div>
+
+  <div class="music-player" id="music-player">
+    <div class="player-header">
+      <button class="play-button" id="play-button">
+        <i class="fas fa-play" id="play-icon"></i>
+      </button>
+      <div class="track-info">
+        <div class="track-name">The Real Slim Shady</div>
+        <div class="track-artist">Eminem</div>
+      </div>
+    </div>
+
+    <div class="volume-control">
+      <i class="fas fa-volume-up volume-icon"></i>
+      <input type="range" min="0" max="100" value="70" class="volume-slider" id="volume-slider">
+      <span class="volume-percentage" id="volume-percentage">70%</span>
+    </div>
+    
+    <audio id="audio-player" loop>
+      <source src="/eminem.mp3" type="audio/mpeg">
+    </audio>
   </div>
 
   <div class="social-container">
@@ -961,6 +1153,38 @@
         quoteElement.style.opacity = '1';
       }, 500);
     }
+
+    const audioPlayer = document.getElementById('audio-player');
+    const playButton = document.getElementById('play-button');
+    const playIcon = document.getElementById('play-icon');
+    const volumeSlider = document.getElementById('volume-slider');
+    const volumePercentage = document.getElementById('volume-percentage');
+    const musicPlayerEl = document.getElementById('music-player');
+
+    audioPlayer.volume = 0.7;
+
+    playButton.addEventListener('click', () => {
+      if (audioPlayer.paused) {
+        audioPlayer.play()
+          .then(() => {
+            playIcon.className = 'fas fa-pause';
+            musicPlayerEl.classList.add('playing');
+          })
+          .catch(error => {
+            console.error('Audio play failed:', error);
+          });
+      } else {
+        audioPlayer.pause();
+        playIcon.className = 'fas fa-play';
+        musicPlayerEl.classList.remove('playing');
+      }
+    });
+
+    volumeSlider.addEventListener('input', (e) => {
+      const volume = e.target.value;
+      audioPlayer.volume = volume / 100;
+      volumePercentage.textContent = volume + '%';
+    });
 
     function toggleSkillLevel(card) {
       document.querySelectorAll('.weapon-card').forEach(c => {
