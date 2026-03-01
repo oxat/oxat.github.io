@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Loading...</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="app.css"/>
+</head>
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+  <div class="vignette"></div>
+  <div class="noise"></div>
+
+  <!-- Torch Left -->
+  <div class="torch-wrap left">
+    <div class="torch">
+      <div class="torch-wall-glow"></div>
+      <div class="flame-wrap">
+        <div class="flame-glow"></div>
+        <div class="flame-outer"></div>
+        <div class="flame-mid"></div>
+        <div class="flame-core"></div>
+      </div>
+      <div class="torch-bowl"></div>
+      <div class="torch-handle"></div>
+    </div>
+  </div>
+
+  <!-- Torch Right -->
+  <div class="torch-wrap right">
+    <div class="torch">
+      <div class="torch-wall-glow"></div>
+      <div class="flame-wrap">
+        <div class="flame-glow"></div>
+        <div class="flame-outer"></div>
+        <div class="flame-mid"></div>
+        <div class="flame-core"></div>
+      </div>
+      <div class="torch-bowl"></div>
+      <div class="torch-handle"></div>
+    </div>
+  </div>
+
+  <!-- Social Sidebar (right, fixed) -->
+  <aside class="social-sidebar" id="social-sidebar">
+    <div class="social-sidebar-label">Alliances</div>
+    <div class="social-sidebar-items" id="social-sidebar-items">
+      <!-- populated by JS -->
+      <div class="sskel"></div>
+      <div class="sskel"></div>
+      <div class="sskel"></div>
+      <div class="sskel"></div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="page">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="avatar-shield">
+        <svg class="shield-svg" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="sg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#3a2e1a"/>
+              <stop offset="50%" stop-color="#1a1610"/>
+              <stop offset="100%" stop-color="#0d0b08"/>
+            </linearGradient>
+            <linearGradient id="sb" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#c9a84c"/>
+              <stop offset="50%" stop-color="#7a5c1e"/>
+              <stop offset="100%" stop-color="#c9a84c"/>
+            </linearGradient>
+            <filter id="ss">
+              <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.7"/>
+            </filter>
+          </defs>
+          <path d="M100 8 L188 42 L188 148 L100 232 L12 148 L12 42 Z" fill="url(#sg)" stroke="url(#sb)" stroke-width="2.5" filter="url(#ss)"/>
+          <path d="M100 22 L176 52 L176 144 L100 218 L24 144 L24 52 Z" fill="none" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+          <circle cx="100" cy="14" r="4" fill="#7a5c1e" stroke="#c9a84c" stroke-width="1"/>
+          <circle cx="183" cy="46" r="4" fill="#7a5c1e" stroke="#c9a84c" stroke-width="1"/>
+          <circle cx="183" cy="144" r="4" fill="#7a5c1e" stroke="#c9a84c" stroke-width="1"/>
+          <circle cx="100" cy="225" r="4" fill="#7a5c1e" stroke="#c9a84c" stroke-width="1"/>
+          <circle cx="17"  cy="144" r="4" fill="#7a5c1e" stroke="#c9a84c" stroke-width="1"/>
+          <circle cx="17"  cy="46"  r="4" fill="#7a5c1e" stroke="#c9a84c" stroke-width="1"/>
+          <line x1="100" y1="30" x2="100" y2="90" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+          <line x1="40"  y1="90" x2="160" y2="90" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+          <path d="M40 50 L90 42 L90 90 L40 90 Z" fill="rgba(255,255,255,0.025)"/>
+        </svg>
+        <img class="avatar-img" id="avatar-img" src="https://i.imgur.com/MCXJWcg.png" alt="Avatar"/>
+        <div class="status-badge">
+          <span class="status-dot" id="status-dot"></span>
+          <span id="status-text">...</span>
+        </div>
+      </div>
+
+      <h1 class="hero-name" id="hero-name">—</h1>
+      <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-gem"></div>
+        <div class="divider-line"></div>
+      </div>
+      <p class="hero-subtitle" id="hero-subtitle">Lord of Code &nbsp;·&nbsp; Master of Digital Realms</p>
+
+      <div class="typing-scroll">
+        <div class="typing-inner">
+          <span id="typing-out"></span><span class="cursor"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section reveal">
+      <div class="section-header">
+        <span class="section-title">Arsenal of Skills</span>
+        <div class="divider-line"></div>
+        <div class="divider-gem small"></div>
+      </div>
+      <div class="skills-grid" id="skills-grid">
+
+        <!-- Row 1: Web Core -->
+        <div class="skill-card" data-pct="92"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-html5-plain skill-icon" style="color:#E34F26"></i></div><div class="skill-name">HTML5</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">92%</div></div></div>
+
+        <div class="skill-card" data-pct="88"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-css3-plain skill-icon" style="color:#1572B6"></i></div><div class="skill-name">CSS3</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">88%</div></div></div>
+
+        <div class="skill-card" data-pct="95"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-javascript-plain skill-icon" style="color:#F7DF1E"></i></div><div class="skill-name">JavaScript</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">95%</div></div></div>
+
+        <div class="skill-card" data-pct="80"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-typescript-plain skill-icon" style="color:#3178C6"></i></div><div class="skill-name">TypeScript</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">80%</div></div></div>
+
+        <!-- Row 2: Frameworks -->
+        <div class="skill-card" data-pct="85"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-react-original skill-icon" style="color:#61DAFB"></i></div><div class="skill-name">React</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">85%</div></div></div>
+
+        <div class="skill-card" data-pct="72"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-nextjs-plain skill-icon" style="color:#ffffff"></i></div><div class="skill-name">Next.js</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">72%</div></div></div>
+
+        <div class="skill-card" data-pct="78"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-nodejs-plain skill-icon" style="color:#339933"></i></div><div class="skill-name">Node.js</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">78%</div></div></div>
+
+        <div class="skill-card" data-pct="70"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-express-original skill-icon" style="color:#c4c4c4"></i></div><div class="skill-name">Express</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">70%</div></div></div>
+
+        <!-- Row 3: Backend / DB -->
+        <div class="skill-card" data-pct="80"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-php-plain skill-icon" style="color:#8892BE"></i></div><div class="skill-name">PHP</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">80%</div></div></div>
+
+        <div class="skill-card" data-pct="75"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-python-plain skill-icon" style="color:#3776AB"></i></div><div class="skill-name">Python</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">75%</div></div></div>
+
+        <div class="skill-card" data-pct="74"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-mysql-plain skill-icon" style="color:#4479A1"></i></div><div class="skill-name">MySQL</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">74%</div></div></div>
+
+        <div class="skill-card" data-pct="68"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-mongodb-plain skill-icon" style="color:#47A248"></i></div><div class="skill-name">MongoDB</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">68%</div></div></div>
+
+        <!-- Row 4: DevOps / Tools -->
+        <div class="skill-card" data-pct="82"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-git-plain skill-icon" style="color:#F05032"></i></div><div class="skill-name">Git</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">82%</div></div></div>
+
+        <div class="skill-card" data-pct="65"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-docker-plain skill-icon" style="color:#2496ED"></i></div><div class="skill-name">Docker</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">65%</div></div></div>
+
+        <div class="skill-card" data-pct="78"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-linux-plain skill-icon" style="color:#FCC624"></i></div><div class="skill-name">Linux</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">78%</div></div></div>
+
+        <div class="skill-card" data-pct="60"><span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><div class="skill-icon-wrap"><div class="skill-icon-bg"></div><i class="devicon-redis-plain skill-icon" style="color:#DC382D"></i></div><div class="skill-name">Redis</div><div class="skill-bar-wrap"><div class="skill-bar-track"><div class="skill-bar-fill"></div></div><div class="skill-pct">60%</div></div></div>
+
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+    <div class="quote-section reveal">
+      <span class="quote-mark open">❝</span>
+      <span class="quote-mark close">❞</span>
+      <p class="quote-text-el" id="quote-el">Valar Morghulis — All Bugs Must Die</p>
+      <p class="quote-author" id="quote-author">— Ionut, Lord of Code</p>
+    </div>
+
+  </div>
+
+  <!-- MUSIC PLAYER -->
+  <div class="player" id="player">
+    <div class="player-top">
+      <button class="play-btn" id="play-btn"><i class="fas fa-play" id="play-ico"></i></button>
+      <div class="track-info">
+        <div class="track-name">The Real Slim Shady</div>
+        <div class="track-artist">Eminem</div>
+      </div>
+    </div>
+    <div class="wave-row">
+      <div class="wbar"></div><div class="wbar"></div><div class="wbar"></div>
+      <div class="wbar"></div><div class="wbar"></div><div class="wbar"></div>
+      <div class="wbar"></div>
+    </div>
+    <div class="vol-row">
+      <i class="fas fa-volume-low"></i>
+      <input type="range" min="0" max="100" value="70" class="vol-slider" id="vol-slider"/>
+      <span class="vol-pct" id="vol-pct">70%</span>
+    </div>
+    <audio id="audio" loop>
+      <source src="/eminem.mp3" type="audio/mpeg"/>
+    </audio>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
